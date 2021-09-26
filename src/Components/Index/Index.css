@@ -1,0 +1,239 @@
+header {
+  position: relative;
+  background-color: black;
+  height: 100vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+header .container p {
+  color: #fff;
+}
+.container h1 {
+  font-family: 'Limelight', cursive;
+  font-size: 40px;
+  font-weight: 300;
+  color: #fff;
+}
+.container h1 span {
+  color: #ffb03b;
+}
+.container .back a {
+  color: #fff;
+  text-decoration: none;
+  transition: 500ms;
+  border: 1px solid rgba(255, 255, 255, 0.63);
+  padding: 15px;
+  padding-top: 18px;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  background: #00000090;
+}
+.container img {
+  width: 120px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  transition: 500ms;
+}
+.container img:hover {
+  box-shadow: 0 4px 48px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
+}
+.container .back a:hover {
+  color: #ffb03b;
+  text-decoration: none;
+}
+.container i {
+  font-size: 32px;
+}
+
+.letter {
+  letter-spacing: 4px;
+  padding-bottom: 40px;
+}
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.7;
+  z-index: 1;
+}
+@media (max-width: 765px) {
+  .container .back {
+    padding: 100px 80px;
+    border-radius: 3px;
+  }
+  .container h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+  .container p {
+    font-size: 14px;
+  }
+
+  .container .back a {
+    color: #fff;
+    text-decoration: none;
+    transition: 500ms;
+    border: 1px solid rgba(255, 255, 255, 0.63);
+    padding: 9px;
+    padding-top: 12px;
+  }
+  .container i {
+    font-size: 28px;
+  }
+}
+@media (max-width: 360px) {
+  .container h1 {
+    font-size: 25px;
+    letter-spacing: 1px;
+  }
+  .container .back a {
+    padding: 5px;
+    padding-top: 12px;
+    font-size: 15px;
+  }
+  .container i {
+    font-size: 23px;
+  }
+}
+@media (max-width: 320px) {
+  .container h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .container p {
+    font-size: 10px;
+  }
+  .container .back a {
+    padding: 5px;
+    padding-top: 12px;
+    font-size: 10px;
+  }
+  .container i {
+    font-size: 22px;
+  }
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url(../../Images/intro.png) black no-repeat center center scroll;
+  }
+  header video {
+    display: none;
+  }
+}
+
+#payment {
+  background-image: url(../../Images/serv_bg.png);
+  background-size: cover;
+  width: 100%;
+  height: auto;
+}
+#services .services-top {
+  padding: 70px 0 40px;
+}
+#services .services-list {
+  padding-top: 50px;
+}
+.services-list .service-block {
+  margin-bottom: 40px;
+}
+i {
+  font-size: 80px;
+}
+.services-list .service-block .text-block {
+  margin-left: 0px;
+}
+.services-list .service-block .text-block .name {
+  font-size: 30px;
+  font-weight: 550;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+.services-list .service-block .text-block .text {
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 400;
+  text-align: justify;
+}
+#mobile {
+  background-color: #fff;
+}
+#mobile h1,
+p {
+  color: #35322d;
+}
+@media (min-width: 1024px) {
+  #mobile {
+    padding: 0px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #mobile .mob-desc {
+    padding: 55px;
+  }
+}
+
+#mobile .content {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+#mobile a {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+@media (max-width: 540px) {
+  #mobile .mob {
+    display: none;
+  }
+  #mobile h1 {
+    padding: 50px 0px 0px 50px;
+    font-size: 30px;
+  }
+  #mobile p {
+    padding: 0 50px 0 50px;
+  }
+  #mobile a {
+    padding: 0 50px 50px;
+  }
+  #mobile .content {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 1024px) {
+  #mobile .mob {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  #mobile .mob-desc h1 {
+    padding-top: 50px;
+  }
+}
