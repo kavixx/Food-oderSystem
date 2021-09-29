@@ -64,21 +64,58 @@ export default class ChefForm extends Component {
       skill: this.state.skill,
       price: parseFloat(this.state.price),
     };
-    axios
-      .post(
-        'http://localhost:8080/api/v1/admin/chef/new-chef',
-        QueryString.stringify(chef),
-        {
-          config,
-        }
-      )
-      .then(response => {
-        if (response.data != null) {
-          alert('Chef submit');
-        }
+    const token = localStorage.getItem('token');
+    // axios
+    //   .post('http://localhost:8080/api/v1/admin/chef/new-chef', {
+    //     chef,
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       'Content-Type': 'application/json',
+    //       'Access-Control-Allow-Origin': '*',
+    //     },
+    //   })
+    //   .then(response => {
+    //     if (response.data != null) {
+    //       alert('Chef submit');
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log('Error ' + err.response);
+    //   });
+
+    // axios({
+    //   method: 'post',
+    //   url: 'http://localhost:8080/api/v1/admin/chef/new-chef',
+    //   data: JSON.stringify(chef),
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*',
+    //   },
+    // })
+    //   .then(response => {
+    //     if (response.data != null) {
+    //       alert('Chef submit');
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log('Error ' + err);
+    //   });
+
+    fetch('http://localhost:8080/api/v1/admin/chef/new-chef', {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify(chef),
+    })
+      .then(res => {
+        console.log(res);
       })
       .catch(err => {
-        console.log('Error ' + err.response);
+        console.log(err);
       });
   };
 
