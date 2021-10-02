@@ -48,7 +48,7 @@ export default class Signup extends Component {
     try {
       axios
         .post(
-          'http://localhost:8080/api/v1/users/new-user',
+          'http://urbansmokehouse.online:8080/api/v1/users/new-user',
           QueryString.stringify(user)
         )
         .then(res => {

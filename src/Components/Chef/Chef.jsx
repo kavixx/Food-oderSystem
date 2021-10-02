@@ -10,7 +10,7 @@ export default function Chef() {
 
   useEffect(() => {
     // axios
-    //   .get('http://localhost:8080/api/v1/chef/find-chefs')
+    //   .get('http://urbansmokehouse.online:8080/api/v1/chef/find-chefs')
     //   .then(res => {
     //     return JSON.stringify(res);
     //   })
@@ -24,14 +24,14 @@ export default function Chef() {
     getCategories();
   }, []);
   // const getChef = () => {
-  //   const res = axios.get('http://localhost:8080/api/v1/chef/find-chefs');
+  //   const res = axios.get('http://urbansmokehouse.online:8080/api/v1/chef/find-chefs');
   //   console.log(res);
   // };
 
   const getCategories = async () => {
     try {
       let res = await axios.get(
-        'http://localhost:8080/api/v1/chef/find-chefs'
+        'http://urbansmokehouse.online:8080/api/v1/chef/find-chefs'
         //{ ...config }
       );
       setChef(res.data);

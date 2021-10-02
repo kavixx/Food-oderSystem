@@ -19,7 +19,9 @@ function Food() {
       const token = localStorage.getItem('token');
       let res = await axios({
         method: 'GET',
-        baseURL: 'http://localhost:8080/api/v1/food-item/find-items/' + code,
+        baseURL:
+          'http://urbansmokehouse.online:8080/api/v1/food-item/find-items/' +
+          code,
         //...config,
       }).catch(err => {
         console.log(err);

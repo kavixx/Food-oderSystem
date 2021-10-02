@@ -48,7 +48,7 @@ export default class DelUserForm extends Component {
 
     axios
       .post(
-        'http://localhost:8080/api/v1/admin/new-deliver-user',
+        'http://urbansmokehouse.online:8080/api/v1/admin/new-deliver-user',
         QueryString.stringify(user)
       )
       .then(res => {

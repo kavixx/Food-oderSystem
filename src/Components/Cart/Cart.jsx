@@ -19,7 +19,9 @@ export default function Cart() {
 
   useEffect(() => {
     axios
-      .post('http://localhost:8080/api/v1/user-cart/get-cart', { id: id })
+      .post('http://urbansmokehouse.online:8080/api/v1/user-cart/get-cart', {
+        id: id,
+      })
       .then(res => {
         if (res.status === 200) {
           setCart(res.data);
@@ -53,7 +55,10 @@ export default function Cart() {
 
   const removeItem = id => {
     axios
-      .delete('http://localhost:8080/api/v1/user-cart/delete-cart', { id: id })
+      .delete(
+        'http://urbansmokehouse.online:8080/api/v1/user-cart/delete-cart',
+        { id: id }
+      )
       .then(res => {
         console.log(res);
       })
@@ -83,7 +88,7 @@ export default function Cart() {
     const status = payMethod;
     const id = parseInt(localStorage.getItem('userId'));
     axios
-      .post('http://localhost:8080/api/v1/order/new-order', {
+      .post('http://urbansmokehouse.online:8080/api/v1/order/new-order', {
         deliveryMethod: delvMethod,
         id: id,
         status: status,

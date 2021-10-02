@@ -9,7 +9,9 @@ function Navbar(props) {
   const id = parseInt(localStorage.getItem('userId'));
   useEffect(() => {
     axios
-      .post('http://localhost:8080/api/v1/user-cart/get-cart', { id: id })
+      .post('http://urbansmokehouse.online:8080/api/v1/user-cart/get-cart', {
+        id: id,
+      })
       .then(res => {
         if (res.status === 200) {
           setLength(res.data);

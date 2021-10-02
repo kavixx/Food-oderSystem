@@ -29,9 +29,13 @@ export default class PartyRoomForm extends Component {
   findRoom = roomID => {
     try {
       axios
-        .get('http://localhost:8080/api/v1/party-rooms/find-rooms/' + roomID, {
-          //...config,
-        })
+        .get(
+          'http://urbansmokehouse.online:8080/api/v1/party-rooms/find-rooms/' +
+            roomID,
+          {
+            //...config,
+          }
+        )
         .then(res => {
           if (res.data != null) {
             this.setState({
@@ -58,7 +62,7 @@ export default class PartyRoomForm extends Component {
     };
     axios
       .post(
-        'http://localhost:8080/api/v1/admin/party-room/new-room',
+        'http://urbansmokehouse.online:8080/api/v1/admin/party-room/new-room',
         QueryString.stringify(partyRoom)
         //...config
       )
@@ -84,7 +88,7 @@ export default class PartyRoomForm extends Component {
     };
     axios
       .put(
-        'http://localhost:8080/api/v1/admin/party-room/update-room',
+        'http://urbansmokehouse.online:8080/api/v1/admin/party-room/update-room',
         QueryString.stringify(rooms)
         //{ ...config }
       )

@@ -13,7 +13,7 @@ export default function PartyRooms() {
   const getRooms = async () => {
     try {
       let res = await axios.get(
-        'http://localhost:8080/api/v1/party-rooms/find-rooms'
+        'http://urbansmokehouse.online:8080/api/v1/party-rooms/find-rooms'
         //{ ...config }
       );
       console.log(res.data);

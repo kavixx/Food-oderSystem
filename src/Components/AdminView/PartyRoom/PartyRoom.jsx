@@ -22,7 +22,7 @@ export default class PartyRoom extends Component {
   componentDidMount() {
     axios
       .get(
-        'http://localhost:8080/api/v1/party-rooms/find-rooms'
+        'http://urbansmokehouse.online:8080/api/v1/party-rooms/find-rooms'
         //...config,
       )
       .then(res => {
@@ -41,7 +41,8 @@ export default class PartyRoom extends Component {
   delete = roomID => {
     axios
       .delete(
-        'http://localhost:8080/api/v1/admin/party-room/delete-room/' + roomID
+        'http://urbansmokehouse.online:8080/api/v1/admin/party-room/delete-room/' +
+          roomID
         //{
         // ...config,
         //}
@@ -61,7 +62,7 @@ export default class PartyRoom extends Component {
     };
     axios
       .put(
-        'http://localhost:8080/api/v1/party-rooms/update-status',
+        'http://urbansmokehouse.online:8080/api/v1/party-rooms/update-status',
         QueryString.stringify(data)
       )
       .then(res => {

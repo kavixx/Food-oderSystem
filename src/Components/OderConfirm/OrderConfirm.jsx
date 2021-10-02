@@ -6,7 +6,9 @@ export default function OrderConfirm() {
   const id = parseInt(localStorage.getItem('userId'));
   useEffect(() => {
     axios
-      .post('http://localhost:8080/api/v1/order/find-order', { id: id })
+      .post('http://urbansmokehouse.online:8080/api/v1/order/find-order', {
+        id: id,
+      })
       .then(res => {
         console.log(res);
         setOrder(res.data);

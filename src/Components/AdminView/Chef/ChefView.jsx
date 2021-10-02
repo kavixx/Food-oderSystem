@@ -19,7 +19,7 @@ export default class Chef extends Component {
   componentDidMount() {
     axios({
       method: 'GET',
-      baseURL: 'http://localhost:8080/api/v1/chef/find-chefs',
+      baseURL: 'http://urbansmokehouse.online:8080/api/v1/chef/find-chefs',
       //...config,
     }).then(res => {
       this.setState({
@@ -31,7 +31,9 @@ export default class Chef extends Component {
   delete = chefID => {
     axios({
       method: 'DELETE',
-      baseURL: 'http://localhost:8080/api/v1/admin/chef/delete-chef/' + chefID,
+      baseURL:
+        'http://urbansmokehouse.online:8080/api/v1/admin/chef/delete-chef/' +
+        chefID,
       //...config,
     }).then(response => {
       console.log(response.status);
@@ -47,7 +49,7 @@ export default class Chef extends Component {
     };
     axios
       .post(
-        'http://localhost:8080/api/v1/admin/chef/change-status-of-a-chef',
+        'http://urbansmokehouse.online:8080/api/v1/admin/chef/change-status-of-a-chef',
         QueryString.stringify(data)
       )
       .then(res => {

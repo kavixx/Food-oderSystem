@@ -27,7 +27,7 @@ export default class FoodView extends Component {
     try {
       axios
         .get(
-          'http://localhost:8080/api/v1/food-item/find-items'
+          'http://urbansmokehouse.online:8080/api/v1/food-item/find-items'
           //{ config }
         )
         .then(res => {
@@ -51,7 +51,8 @@ export default class FoodView extends Component {
   delete = fCode => {
     axios
       .delete(
-        'http://localhost:8080/api/v1/admin/food-item/delete-item/' + fCode
+        'http://urbansmokehouse.online:8080/api/v1/admin/food-item/delete-item/' +
+          fCode
         //{
         //  ...config,
         //}

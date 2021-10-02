@@ -9,7 +9,7 @@ export default class ChefItem extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8080/api/v1/chef/find-chefs')
+      .get('http://urbansmokehouse.online:8080/api/v1/chef/find-chefs')
       .then(res => {
         this.setState({ chef: res.data });
       })

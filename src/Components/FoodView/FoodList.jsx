@@ -11,7 +11,7 @@ export default function FoodList(props) {
     if (item.itemCode != null) {
       axios
         .post(
-          'http://localhost:8080/api/v1/user-cart/new-item',
+          'http://urbansmokehouse.online:8080/api/v1/user-cart/new-item',
           item
           // {
           //   ...config,

@@ -34,7 +34,10 @@ export default class FoodForm extends Component {
 
   findFood = fCode => {
     axios
-      .get('http://localhost:8080/api/v1/food-item/find-items/' + fCode)
+      .get(
+        'http://urbansmokehouse.online:8080/api/v1/food-item/find-items/' +
+          fCode
+      )
       .then(res => {
         this.setState({
           code: res.data.code,
@@ -65,7 +68,7 @@ export default class FoodForm extends Component {
 
     axios
       .post(
-        'http://localhost:8080​/api/v1/admin/food-item/new-item',
+        'http://urbansmokehouse.online:8080​/api/v1/admin/food-item/new-item',
         QueryString.stringify(food)
         //{ ...config }
       )
@@ -91,7 +94,7 @@ export default class FoodForm extends Component {
     try {
       axios
         .put(
-          'http://localhost:8080/api/v1/admin/food-item/update-item',
+          'http://urbansmokehouse.online:8080/api/v1/admin/food-item/update-item',
           QueryString.stringify(food)
           //{ ...config }
         )

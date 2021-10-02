@@ -34,7 +34,7 @@ export default class Chart extends Component {
     let resData;
     axios
       .get(
-        `http://localhost:8080/api/v1/admin/summary/monthly-sales/food/${data.startTime}/${data.endTime}`
+        `http://urbansmokehouse.online:8080//api/v1/admin/summary/monthly-sales/food/${data.startTime}/${data.endTime}`
       )
       .then(res => {
         //console.log(JSON.parse(resData));

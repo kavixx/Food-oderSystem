@@ -31,7 +31,8 @@ export default class ChefForm extends Component {
     try {
       axios({
         method: 'GET',
-        baseURL: 'http://localhost:8080/api/v1/chef/find-chefs/' + chefID,
+        baseURL:
+          'http://urbansmokehouse.online:8080/api/v1/chef/find-chefs/' + chefID,
         //config,
       })
         .then(res => {
@@ -66,7 +67,7 @@ export default class ChefForm extends Component {
     const token = localStorage.getItem('token');
     axios
       .post(
-        'http://localhost:8080/api/v1/admin/chef/new-chef',
+        'http://urbansmokehouse.online:8080/api/v1/admin/chef/new-chef',
         QueryString.stringify(chef)
       )
       .then(response => {
@@ -92,7 +93,7 @@ export default class ChefForm extends Component {
       skill: '',
       price: '',
     });
-    // fetch('http://localhost:8080/api/v1/admin/chef/new-chef', {
+    // fetch('http://urbansmokehouse.online:8080/api/v1/admin/chef/new-chef', {
     //   method: 'POST', // *GET, POST, PUT, DELETE, etc
     //   body: JSON.stringify(chef),
     // })
@@ -117,7 +118,7 @@ export default class ChefForm extends Component {
     };
     axios
       .put(
-        'http://localhost:8080/api/v1/admin/chef/update-chef',
+        'http://urbansmokehouse.online:8080/api/v1/admin/chef/update-chef',
         QueryString.stringify(chef)
       )
       .then(response => {

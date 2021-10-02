@@ -27,7 +27,9 @@ class Login extends Component {
       password: this.state.password,
     };
     axios
-      .post('http://localhost:8080/api/v1/users/check-user', { user })
+      .post('http://urbansmokehouse.online:8080/api/v1/users/check-user', {
+        user,
+      })
       .then(res => {
         console.log(res);
         if (res.data.uid === 0) {
@@ -56,7 +58,7 @@ class Login extends Component {
       });
     // axios({
     //   method: 'POST',
-    //   baseURL: 'http://localhost:8080/api/v1/users/check-user',
+    //   baseURL: 'http://urbansmokehouse.online:8080/api/v1/users/check-user',
     //   data: JSON.stringify(user),
     //   headers: { 'Content-Type': 'application/json' },
     // })

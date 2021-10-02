@@ -13,7 +13,7 @@ function ChefList(props) {
     try {
       axios
         .post(
-          'http://localhost:8080/api/v1/api/v1/user-cart/new-item',
+          'http://urbansmokehouse.online:8080/api/v1/api/v1/user-cart/new-item',
           QueryString.stringify(item)
         )
         .then(Response => {
