@@ -26,7 +26,10 @@ export default class FoodView extends Component {
   componentDidMount() {
     try {
       axios
-        .get('http://localhost:8080/api/v1/food-item/find-items', { config })
+        .get(
+          'http://localhost:8080/api/v1/food-item/find-items'
+          //{ config }
+        )
         .then(res => {
           this.setState({
             food: res.data,
@@ -46,20 +49,18 @@ export default class FoodView extends Component {
     }
   }
   delete = fCode => {
-    try {
-      axios
-        .delete(
-          'http://localhost:8080/api/v1/admin/food-item/delete-item/' + fCode,
-          {
-            config,
-          }
-        )
-        .then(response => {
-          if (response === '') {
-            this.componentDidMount();
-          }
-        });
-    } catch (e) {}
+    axios
+      .delete(
+        'http://localhost:8080/api/v1/admin/food-item/delete-item/' + fCode
+        //{
+        //  ...config,
+        //}
+      )
+      .then(response => {
+        if (response === '') {
+          this.componentDidMount();
+        }
+      });
   };
 
   render() {

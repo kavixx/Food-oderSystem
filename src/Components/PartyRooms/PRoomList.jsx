@@ -1,7 +1,8 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { MdEventAvailable } from 'react-icons/md';
 import axios from 'axios';
 import QueryString from 'qs';
+import partyRoomModal from './partyRoomModal';
 
 function ChefList(props) {
   const [item, setItem] = useState([{ itemCode: '', quantity: '' }]);

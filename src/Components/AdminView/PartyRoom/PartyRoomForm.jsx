@@ -30,7 +30,7 @@ export default class PartyRoomForm extends Component {
     try {
       axios
         .get('http://localhost:8080/api/v1/party-rooms/find-rooms/' + roomID, {
-          config,
+          //...config,
         })
         .then(res => {
           if (res.data != null) {
@@ -53,16 +53,14 @@ export default class PartyRoomForm extends Component {
   submit = event => {
     event.preventDefault();
     const partyRoom = {
-      capacity: this.state.capacity,
-      price: this.state.price,
+      capacity: parseInt(this.state.capacity),
+      price: parseFloat(this.state.price),
     };
     axios
       .post(
         'http://localhost:8080/api/v1/admin/party-room/new-room',
-        QueryString.stringify(partyRoom),
-        {
-          config,
-        }
+        QueryString.stringify(partyRoom)
+        //...config
       )
       .then(res => {
         console.log(partyRoom);
@@ -87,8 +85,8 @@ export default class PartyRoomForm extends Component {
     axios
       .put(
         'http://localhost:8080/api/v1/admin/party-room/update-room',
-        QueryString.stringify(rooms),
-        { config }
+        QueryString.stringify(rooms)
+        //{ ...config }
       )
       .then(res => {
         if (res != null) {

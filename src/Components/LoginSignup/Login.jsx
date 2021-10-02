@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import './main.css';
 import bg from '../../Images/logo.png';
 import axios from 'axios';
-import { Redirect } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      redirect: false,
+      LoggedIn: false,
     };
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -26,33 +26,40 @@ export default class Login extends Component {
       username: this.state.username,
       password: this.state.password,
     };
-    try {
-      axios({
-        method: 'POST',
-        baseURL: 'http://localhost:8080/api/v1/authentication/authenticate',
-        data: JSON.stringify(user),
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      })
-        .then(res => {
-          console.log(res);
-          if (res.status === 200) {
-            localStorage.setItem('token', res.data.jwt);
-            this.setState({ redirect: true });
-            this.onRedirect();
-            console.log('redirect' + this.state.redirect);
+    axios
+      .post('http://localhost:8080/api/v1/users/check-user', { user })
+      .then(res => {
+        console.log(res);
+        if (res.data.uid === 0) {
+          alert('Incorrect username or password');
+        } else {
+          localStorage.setItem('userId', res.data);
+          this.setState({ LoggedIn: true });
+          switch (res.data.type) {
+            case 'ADMIN':
+              this.props.history.push({
+                pathname: '/dashboard',
+              });
+            case 'USER':
+              this.props.history.push({
+                pathname: '/dashboard',
+              });
+            default:
+              this.props.history.push({
+                pathname: '/index',
+              });
           }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  onRedirect = () => {
-    if (this.state.redirect === true) {
-      return <Redirect to='/home' />;
-    }
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // axios({
+    //   method: 'POST',
+    //   baseURL: 'http://localhost:8080/api/v1/users/check-user',
+    //   data: JSON.stringify(user),
+    //   headers: { 'Content-Type': 'application/json' },
+    // })
   };
 
   render() {
@@ -105,14 +112,14 @@ export default class Login extends Component {
                     type='checkbox'
                     name='remember-me'
                   />
-                  <label className='label-checkbox100' htmlFor='ckb1'>
+                  <label className='label-checkbox100'>
                     <h5 style={{ fontSize: '15px' }}>Remember me</h5>
                   </label>
                 </div>
                 <div>
-                  <a href='/home' className='txt3' style={{ fontSize: '17px' }}>
+                  <Link to='' className='txt3' style={{ fontSize: '17px' }}>
                     Forgot Password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <span className='txt1 p-b-11 error-txt'></span>
@@ -123,13 +130,13 @@ export default class Login extends Component {
               </div>
               <div className='txt3' style={{ marginTop: '20px' }}>
                 New to Urban Smokehouse?{' '}
-                <a
-                  href='/signup'
+                <Link
+                  to='/signup'
                   className='txt3'
                   style={{ color: '#006400', fontWeight: '500' }}
                 >
                   Sign up
-                </a>
+                </Link>
               </div>
             </form>
           </div>
@@ -138,3 +145,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login);

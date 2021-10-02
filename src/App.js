@@ -14,8 +14,18 @@ import Food from './Components/FoodView/Food';
 import Cart from './Components/Cart/Cart';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Components/Home/Home';
+import Chart from './Components/AdminView/Charts/Chart';
+import NotFound from './Components/NotFound';
+import DelUserForm from './Components/AdminView/DeliveryPerson/DelUserForm';
+import { useHistory } from 'react-router-dom';
 
-function App() {
+function App(props) {
+  setTimeout(RemoveId(), 60000 * 20);
+  function RemoveId() {
+    let history = useHistory();
+    localStorage.removeItem('userId');
+    //history.push('/login');
+  }
   return (
     <>
       <Router>
@@ -32,24 +42,17 @@ function App() {
           <Route path='/home'>
             <Home />
           </Route>
-          <Route path='/chef'>
-            <Chef />
-          </Route>
-          <Route path='/cart'>
-            <Cart />
-          </Route>
           <Route path='/food/:code'>
             <Food />
           </Route>
           <Route path='/dashboard'>
             <Dashboard />
           </Route>
-          <Route path='/partyRooms'>
-            <PartyRooms />
-          </Route>
           <Route path={'/chefView'}>
             <ChefView />
           </Route>
+          <Route path={'/delUser'} component={DelUserForm} />
+
           <Route path={'/addChef'} component={ChefForm}></Route>
           <Route path={'/editChef/:chefId'} component={ChefForm}></Route>
           <Route path={'/partyRoomView'}>
@@ -65,6 +68,8 @@ function App() {
           </Route>
           <Route path={'/addFood'} component={FoodForm}></Route>
           <Route path={'/editFood/:code'} component={FoodForm}></Route>
+          <Route path='/chart' component={Chart} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     </>

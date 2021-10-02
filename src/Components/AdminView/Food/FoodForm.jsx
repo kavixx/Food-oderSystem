@@ -26,33 +26,28 @@ export default class FoodForm extends Component {
 
   componentDidMount() {
     if (this.props.match.params.code != null) {
-      const fCode = this.props.match.params.code;
+      const fCode = parseInt(this.props.match.params.code);
       this.findFood(fCode);
     }
     console.log('code ' + this.props.match.params.code);
   }
 
   findFood = fCode => {
-    try {
-      axios
-        .get('http://localhost:8080/api/v1/food-item/find-items/' + fCode, {
-          config,
-        })
-        .then(res => {
-          this.setState({
-            code: res.data.code,
-            currency: res.data.currency,
-            description: res.data.description,
-            item: res.data.item,
-            photos: res.data.photos,
-            price: res.data.price,
-            title: res.data.title,
-            type: res.data.type,
-          });
+    axios
+      .get('http://localhost:8080/api/v1/food-item/find-items/' + fCode)
+      .then(res => {
+        this.setState({
+          code: res.data.code,
+          currency: res.data.currency,
+          description: res.data.description,
+          item: res.data.item,
+          photos: res.data.photos,
+          price: res.data.price,
+          title: res.data.title,
+          type: res.data.type,
         });
-    } catch (e) {
-      throw e;
-    }
+      });
+    console.log(this.state);
   };
 
   submit = event => {
@@ -67,24 +62,21 @@ export default class FoodForm extends Component {
     };
     console.log('Photo' + this.state.photos);
     event.preventDefault();
-    try {
-      axios
-        .post(
-          'http://localhost:8080​/api/v1/admin/food-item/new-item',
-          QueryString.stringify(food),
-          { config }
-        )
-        .then(res => {
-          if (res == null) {
-            alert('Error');
-          }
-        })
-        .catch(err => {
-          console.log('Error ' + err);
-        });
-    } catch (e) {
-      throw e;
-    }
+
+    axios
+      .post(
+        'http://localhost:8080​/api/v1/admin/food-item/new-item',
+        QueryString.stringify(food)
+        //{ ...config }
+      )
+      .then(res => {
+        if (res == null) {
+          alert('Error');
+        }
+      })
+      .catch(err => {
+        console.log('Error ' + err);
+      });
   };
 
   update = event => {
@@ -100,8 +92,8 @@ export default class FoodForm extends Component {
       axios
         .put(
           'http://localhost:8080/api/v1/admin/food-item/update-item',
-          QueryString.stringify(food),
-          { config }
+          QueryString.stringify(food)
+          //{ ...config }
         )
         .then(res => {
           console.log(res);

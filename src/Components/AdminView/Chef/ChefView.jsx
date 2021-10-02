@@ -2,25 +2,17 @@ import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import { MdModeEdit, MdDelete } from 'react-icons/md';
+import { MdModeEdit, MdDelete, MdDone, MdRemoveCircle } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import config from '../../../config';
+import QueryString from 'qs';
 
 export default class Chef extends Component {
   constructor(props) {
     super(props);
     this.state = {
       chef: [],
-      chefId: '',
-      firstName: '',
-      lastName: '',
-      gender: '',
-      experience: '',
-      rate: '',
-      skill: '',
-      status: '',
-      price: '',
     };
   }
 
@@ -28,34 +20,42 @@ export default class Chef extends Component {
     axios({
       method: 'GET',
       baseURL: 'http://localhost:8080/api/v1/chef/find-chefs',
-      config,
+      //...config,
     }).then(res => {
       this.setState({
         chef: res.data,
-        chefId: '',
-        firstName: '',
-        lastName: '',
-        gender: '',
-        experience: '',
-        rate: '',
-        skill: '',
-        status: '',
-        price: '',
       });
     });
-    console.log(axios);
   }
 
   delete = chefID => {
     axios({
       method: 'DELETE',
       baseURL: 'http://localhost:8080/api/v1/admin/chef/delete-chef/' + chefID,
-      config,
+      //...config,
     }).then(response => {
-      if (response.data === 'successful') {
+      console.log(response.status);
+      if (response.status === 'successful') {
         this.componentDidMount();
       }
     });
+  };
+  statusUpdate = chefID => {
+    const data = {
+      chefId: parseInt(chefID),
+      status: 'available',
+    };
+    axios
+      .post(
+        'http://localhost:8080/api/v1/admin/chef/change-status-of-a-chef',
+        QueryString.stringify(data)
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -92,6 +92,7 @@ export default class Chef extends Component {
                 <th>Experince</th>
                 <th>Price</th>
                 <th>Skill</th>
+                <th>Activate</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
@@ -105,6 +106,25 @@ export default class Chef extends Component {
                   <td>{chef.experience}</td>
                   <td>{chef.price}</td>
                   <td>{chef.skill}</td>
+                  <td>
+                    <Button
+                      onClick={this.statusUpdate.bind(this, chef.chefId)}
+                      className={
+                        chef.status === 'available'
+                          ? 'btn btn-danger disabled'
+                          : 'btn btn-success'
+                      }
+                      variant={
+                        chef.status === 'available' ? 'danger ' : 'success'
+                      }
+                    >
+                      {chef.status === 'available' ? (
+                        <MdRemoveCircle />
+                      ) : (
+                        <MdDone />
+                      )}
+                    </Button>
+                  </td>
                   <td>
                     {/* <Button variant='primary'> */}
 
@@ -120,7 +140,7 @@ export default class Chef extends Component {
                     <Button
                       variant='danger'
                       onClick={this.delete.bind(this, chef.chefId)}
-                      size='sm'
+                      size=''
                     >
                       <MdDelete />
                     </Button>

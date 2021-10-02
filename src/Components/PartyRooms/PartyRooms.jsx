@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PRoomList from './PRoomList';
 import Navbar from '../Navbar/Navbar';
+import config from '../../config';
 
 export default function PartyRooms() {
   const [room, setRoom] = useState([]);
@@ -13,6 +14,7 @@ export default function PartyRooms() {
     try {
       let res = await axios.get(
         'http://localhost:8080/api/v1/party-rooms/find-rooms'
+        //{ ...config }
       );
       console.log(res.data);
       setRoom(res.data);

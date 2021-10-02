@@ -20,10 +20,7 @@ function Food() {
       let res = await axios({
         method: 'GET',
         baseURL: 'http://localhost:8080/api/v1/food-item/find-items/' + code,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json; charset=utf-8',
-        },
+        //...config,
       }).catch(err => {
         console.log(err);
       });

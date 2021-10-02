@@ -329,6 +329,10 @@ a {
     width: 80%;
   }
 }
+
+.btn-cart {
+  float: right;
+}
 #footer {
   background: #212529;
   color: #fff;

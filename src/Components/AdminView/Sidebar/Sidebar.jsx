@@ -3,6 +3,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { BiMenuAltLeft } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -32,28 +33,36 @@ export default function Sidebar({ name, ...props }) {
               </a>
             </li>
             <li>
-              <a
-                href='/chefView'
+              <Link
+                to='/chefView'
                 style={{ textDecoration: 'none', fontWeight: '600' }}
               >
                 Chef
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href='/foodView'
+              <Link
+                to='/foodView'
                 style={{ textDecoration: 'none', fontWeight: '600' }}
               >
                 Foods
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href='/partyRoomView'
+              <Link
+                to='/partyRoomView'
                 style={{ textDecoration: 'none', fontWeight: '600' }}
               >
                 Party Rooms
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/delUser'
+                style={{ textDecoration: 'none', fontWeight: '600' }}
+              >
+                Delivery User
+              </Link>
             </li>
           </ul>
         </Offcanvas.Body>

@@ -31,8 +31,8 @@ export default function Chef() {
   const getCategories = async () => {
     try {
       let res = await axios.get(
-        'http://localhost:8080/api/v1/chef/find-chefs',
-        { config }
+        'http://localhost:8080/api/v1/chef/find-chefs'
+        //{ ...config }
       );
       setChef(res.data);
     } catch (e) {

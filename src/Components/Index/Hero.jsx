@@ -2,6 +2,7 @@ import React from 'react';
 import Intro from '../../Images/intro.mp4';
 import logo from '../../Images/logo.png';
 import './Index.css';
+import { Link } from 'react-router-dom';
 import { IoFastFoodOutline } from 'react-icons/io5';
 
 function Hero() {
@@ -28,12 +29,12 @@ function Hero() {
                 <strong>EVERY MEAL IS A HAPPY MEAL</strong>
               </p>
               <br />
-              <a href='/login'>
+              <Link to='/login'>
                 ORDER ONLINE{' '}
                 <IoFastFoodOutline
                   style={{ marginBottom: '7px', fontSize: '22px' }}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -6,5 +6,5 @@ const config = {
     'Access-Control-Allow-Origin': '*',
   },
 };
-console.log(token);
+//console.log(token);
 export default config;

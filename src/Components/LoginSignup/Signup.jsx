@@ -5,7 +5,7 @@ import axios from 'axios';
 import QueryString from 'qs';
 import { Route } from 'react-router';
 
-export default class Login extends Component {
+export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,13 +14,24 @@ export default class Login extends Component {
       address: '',
       email: '',
       mobile: '',
+      type: 'user',
       password: '',
       username: '',
     };
     this.valueChange = this.valueChange.bind(this);
     this.submit = this.submit.bind(this);
   }
-
+  formReset = () => {
+    this.setState({
+      firstname: '',
+      lastname: '',
+      address: '',
+      email: '',
+      mobile: '',
+      password: '',
+      username: '',
+    });
+  };
   submit = e => {
     e.preventDefault();
     const user = {
@@ -28,22 +39,23 @@ export default class Login extends Component {
       lastname: this.state.lastname,
       address: this.state.address,
       email: this.state.email,
-      mobile: this.state.mobile,
+      mobile: parseInt(this.state.mobile),
+      type: this.state.type,
       password: this.state.password,
       username: this.state.username,
     };
     console.log(user);
     try {
       axios
-        .put(
+        .post(
           'http://localhost:8080/api/v1/users/new-user',
           QueryString.stringify(user)
         )
         .then(res => {
           if (res.status === 200) {
             alert('Your registration successfully');
+            this.formReset();
           }
-          alert('Error encountered');
         })
         .catch(err => {
           console.log(err);

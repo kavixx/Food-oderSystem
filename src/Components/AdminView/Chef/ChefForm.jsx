@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Card, Form, Button, Col, Row } from 'react-bootstrap';
 import QueryString from 'qs';
 import Sidebar from '../Sidebar/Sidebar';
-import config from '../../../config';
 
 export default class ChefForm extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ export default class ChefForm extends Component {
       axios({
         method: 'GET',
         baseURL: 'http://localhost:8080/api/v1/chef/find-chefs/' + chefID,
-        config,
+        //config,
       })
         .then(res => {
           if (res.data != null) {
@@ -65,58 +64,44 @@ export default class ChefForm extends Component {
       price: parseFloat(this.state.price),
     };
     const token = localStorage.getItem('token');
-    // axios
-    //   .post('http://localhost:8080/api/v1/admin/chef/new-chef', {
-    //     chef,
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       'Content-Type': 'application/json',
-    //       'Access-Control-Allow-Origin': '*',
-    //     },
-    //   })aa
-    //   .then(response => {
-    //     if (response.data != null) {
-    //       alert('Chef submit');
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log('Error ' + err.response);
-    //   });
-
-    // axios({
-    //   method: 'post',
-    //   url: 'http://localhost:8080/api/v1/admin/chef/new-chef',
-    //   data: JSON.stringify(chef),
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //   },
-    // })
-    //   .then(response => {
-    //     if (response.data != null) {
-    //       alert('Chef submit');
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log('Error ' + err);
-    //   });
-
-    fetch('http://localhost:8080/api/v1/admin/chef/new-chef', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify(chef),
-    })
-      .then(res => {
-        console.log(res);
+    axios
+      .post(
+        'http://localhost:8080/api/v1/admin/chef/new-chef',
+        QueryString.stringify(chef)
+      )
+      .then(response => {
+        if (response.data != null) {
+          alert('Chef submit');
+          this.resetForm();
+          // <Redirect to='/chefView' />;
+          this.props.history.push({
+            pathname: '/chefView',
+          });
+        }
       })
       .catch(err => {
-        console.log(err);
+        console.log('Error ' + err);
       });
+  };
+  resetForm = () => {
+    this.setState({
+      firstName: '',
+      lastName: '',
+      gender: '',
+      experience: '',
+      skill: '',
+      price: '',
+    });
+    // fetch('http://localhost:8080/api/v1/admin/chef/new-chef', {
+    //   method: 'POST', // *GET, POST, PUT, DELETE, etc
+    //   body: JSON.stringify(chef),
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   update = event => {
@@ -133,10 +118,7 @@ export default class ChefForm extends Component {
     axios
       .put(
         'http://localhost:8080/api/v1/admin/chef/update-chef',
-        QueryString.stringify(chef),
-        {
-          config,
-        }
+        QueryString.stringify(chef)
       )
       .then(response => {
         if (response.data != null) {

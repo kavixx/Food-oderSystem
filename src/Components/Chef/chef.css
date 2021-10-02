@@ -33,17 +33,17 @@ body {
   z-index: -1;
 }
 
-.card {
+.card-chef {
   background-color: rgb(255, 255, 255);
   color: white;
   padding: 0.5rem;
   height: auto;
-  width: auto;
+  width: 20vw;
   grid-gap: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
-.card:hover {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.288);
-  transition: ease-in 0.5;
+.card-chef:hover {
+  border: 1px solid rgba(0, 0, 0, 0.603);
 }
 
 .cards {
@@ -58,8 +58,6 @@ body {
   font-size: 15px;
   vertical-align: 5px;
   margin-left: 2vw;
-}
-.cards button {
 }
 
 /* Screen larger than 600px? 2 column */

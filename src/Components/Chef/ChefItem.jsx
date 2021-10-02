@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 
 export default class ChefItem extends Component {
@@ -6,11 +7,15 @@ export default class ChefItem extends Component {
     chef: [],
   };
 
-  async componentDidMount() {
-    const url = 'http://localhost:8080/api/v1/chef/find-chefs';
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ chef: data.results, loading: false });
+  componentDidMount() {
+    axios
+      .get('http://localhost:8080/api/v1/chef/find-chefs')
+      .then(res => {
+        this.setState({ chef: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   render() {
     if (this.state.loading) {
